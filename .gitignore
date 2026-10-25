@@ -1,0 +1,10 @@
+*.exe
+*.dll
+*.zip
+*.ini
+*.log
+*.dmp
+*.bmp
+recordings/
+.cache-build/
+__pycache__/
