@@ -8,6 +8,40 @@ If detection cannot find a nonstandard installation, browse to its existing 64-b
 
 Close another running Hitman game/VR host before starting Contracts. Do not launch multiple copies of the game.
 
+## Creating and sharing a support report
+
+The collector creates a filtered technical ZIP to help investigate startup failures, crashes, flickering and connection problems. It creates the report locally; it does not fix the game or send anything automatically.
+
+1. Reproduce the problem, then open **Contracts VR Settings**.
+2. Select **Support → Create support report**.
+3. Choose an output folder and wait for the completion message.
+4. Find the generated `ContractsVR-Diagnostics-*.zip` in that folder. You can open it to review the JSON/text files.
+5. Attach the ZIP to your bug report or send it to the developer manually. Include what you did, when the problem occurred, your headset model, selected connection profile and renderer. If comparing renderers, create a report after each attempt and label them.
+
+If Settings cannot open, run `Collect-Contracts-Diagnostics.cmd` from the installed mod folder. Without an output override, it saves the report ZIP on your **Desktop**. Wait until the console says **Diagnostics saved**.
+
+The collector works with an older installed version too, but the additional startup journal is available only after reproducing the problem with 0.1.0.13 or newer. No game launch, settings change or memory dump is performed by the collector.
+
+The report includes selected build hashes/versions, render settings and counters, startup/error codes, Windows/GPU driver information and memory totals. Raw logs/settings and event messages, local paths, user/computer names, device IDs, network details, tracking poses, process lists, saves, recordings and memory dumps are excluded. Unknown free-form fields are omitted. Share the generated **report ZIP**, not the collector ZIP or a copy of the game folder.
+
+## A crash before the main menu
+
+Use **Support → Create support report** after the failure. This works while the launcher supervises a running game as well. Choose a local output folder, review the ZIP, then share it manually if you want help. No upload occurs. The separate `Collect-Contracts-Diagnostics.cmd` provides the same collector if the settings window cannot open.
+
+The report contains selected technical fields: game/mod hashes and versions, graphics and connection settings, captured dimensions, startup stages, API error codes, Windows/GPU driver versions, memory totals and recognized Windows fault module/code/offset fields. Raw logs/configs/events, paths, account/computer names, device IDs, network details, tracking poses, process lists, game files, saves, recordings and memory dumps are excluded. Unrecognized free-form information is omitted; unknown module names are reported as `other-module`.
+
+Each launch writes a small local startup journal, including capture-device creation and hook installation stages. An `exception-observed` entry is a first-chance observation and may have been handled by the game. It does not by itself prove that exception caused the final exit.
+
+Exit code **3221225477 / 0xC0000005** means an access violation. It does not establish that RAM or VRAM ran out. The fault module, offset and last completed stage are needed to investigate. See [Microsoft's access violation explanation](https://learn.microsoft.com/en-us/shows/inside/access-violation-c0000005-read-or-write).
+
+First check that the selected Steam game runs normally outside the mod. Keep the exact supported executable; do not apply a 4 GB/no-CD executable patch, which changes the verified build. If several old mod packages or renderers were used, compare their identities in the report rather than copying DLLs between installations. The compatibility renderer option provides a reversible comparison.
+
+If there is an actual allocation error, close unneeded memory-heavy applications and compare a lower game render resolution. Check Windows Task Manager's **Memory → Committed** value against its limit. If the page file was disabled, a system-managed page file with sufficient free disk space is a reasonable baseline. This changes the system commit budget, not the game's 32-bit address-space limit. The mod does not change these Windows settings. See [Microsoft's page file guidance](https://learn.microsoft.com/en-us/troubleshoot/windows-client/performance/how-to-determine-the-appropriate-page-file-size-for-64-bit-versions-of-windows).
+
+## Flickering during gameplay or cutscenes
+
+The updated OpenXR host retains the last complete image in each active headset frame; a corrected timing path previously could submit an empty frame between game updates. That fix does not identify every possible flicker on every backend. Compare the same scene using **DXVK** and **Original / previous renderer**, restarting the game between changes. Report the connection profile, renderer, whether menus also flicker, and whether the scene flickers with the headset held still. Create one support report per renderer so the results can be compared.
+
 ## OpenXR starts but tracking or buttons are missing
 
 Keep the headset awake and the PC VR application focused. A runtime losing focus clears gameplay input until focus returns. Use the runtime's controller bindings when its controllers do not have the Meta Touch button names used by the controls guide. This Review Version does not claim tested support for every headset/controller combination.
@@ -48,4 +82,4 @@ Advanced options are available through `Record-VR.ps1`, for example `-NoAudio`, 
 
 Include the mod release version, supported game build, headset model, connection method, game resolution and reproducible steps. For a visual problem, state whether it affects gameplay, menus or cutscenes, and whether it appears while your head is still.
 
-Logs and crash dumps can contain local paths and other personal information. Review them before sharing and send only what is needed for the report. Never upload the game executable, game assets or a whole memory dump to a public issue.
+Prefer the filtered support report from Settings. Raw logs and crash dumps can contain local paths and other personal information; they are deliberately excluded from that report. Never upload the game executable, game assets or a whole memory dump to a public issue.

@@ -1,6 +1,6 @@
 # Hitman: Contracts VR — Review Version
 
-**[Download Review Version 0.1.0.12](https://github.com/andreystashev/hitman-contracts-vr-showcase/releases/tag/v0.1.0.12-review)** | [All releases](https://github.com/andreystashev/hitman-contracts-vr-showcase/releases)
+**[Download Review Version 0.1.0.13 — Fix update](https://github.com/andreystashev/hitman-contracts-vr-showcase/releases/tag/v0.1.0.13-review)** | [All releases](https://github.com/andreystashev/hitman-contracts-vr-showcase/releases)
 
 A community VR mod for the original **Hitman: Contracts (2004)** on PC, with native engine stereo rendering, head tracking and tracked controllers.
 
@@ -35,7 +35,11 @@ Choose the matching connection profile in settings. Explicit VDXR and SteamVR pr
 4. Open **Contracts VR Settings**, verify the game path and select **Automatic** or the matching connection profile.
 5. Click **Save & play**, then load a mission using the controllers.
 
-The mod follows the game's resolution; the launcher does not force a particular resolution or offer a renderer choice. The bundled DXVK renderer is selected automatically, and VSync is disabled for its game presentation path. Headset refresh rate and compositor scheduling remain controlled by the VR runtime.
+The mod follows the game's resolution. Settings show the value in `HitmanContracts.ini`; support reports include the actual captured size. The launcher does not select 4K or revive an old width/height override. DXVK is the default renderer, with an **Original / previous renderer** compatibility option for comparing startup or flickering problems. VSync is disabled on the DXVK game presentation path. Headset refresh rate and compositor scheduling remain controlled by the VR runtime.
+
+The Modifiers page also offers native **cheats** and **Start with the mission selector**. These options apply on the next mod launch and preserve saves. Disabling the mission selector restores the previous startup scene when it was saved by this setting.
+
+After a problem, use **Settings → Support → Create support report**. The report stays on your PC until you choose to share it. It contains selected technical fields, with no raw logs/configuration, local paths, user/device identifiers or memory dumps. See [how to create and share a support report](TROUBLESHOOTING.md#creating-and-sharing-a-support-report).
 
 ## Settings
 

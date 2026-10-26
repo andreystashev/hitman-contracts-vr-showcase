@@ -30,4 +30,6 @@ Describe the problem and what you expected.
 Gameplay / menu / cutscene. For a visual problem, does it also happen while your head is still?
 
 **Evidence (optional)**
-Attach a short clip, screenshot, or relevant log excerpt after removing personal information. Do not attach game files, the game executable, whole memory dumps, or private save data.
+Prefer the generated `ContractsVR-Diagnostics-*.zip` from **Settings → Support → Create support report**. Choose an output folder, wait for completion, review the ZIP, and attach it manually. Nothing is uploaded automatically. If Settings cannot open, run the included `Collect-Contracts-Diagnostics.cmd` from the installed mod folder (reports default to Desktop).
+
+A short clip or screenshot may also help. Do not attach game files, the game executable, raw logs with personal paths, whole memory dumps, or private save data.

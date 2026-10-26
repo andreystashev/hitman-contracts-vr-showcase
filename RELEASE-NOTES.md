@@ -1,4 +1,18 @@
-# Hitman: Contracts VR 0.1.0.12 - Review Version
+# Hitman: Contracts VR 0.1.0.13 - Review Version
+
+## Update in 0.1.0.13
+
+This is a fix update to the Review Version. Close the game and old launcher, then run the new installer. Existing settings are preserved. Use **Settings > Support > Create support report** for a local diagnostic ZIP; [usage instructions](https://github.com/andreystashev/hitman-contracts-vr-showcase/blob/main/TROUBLESHOOTING.md#creating-and-sharing-a-support-report) explain the process. Nothing is uploaded automatically.
+
+- Local support report button with allowlisted technical fields and no automatic upload. Raw logs, paths, personal/device identifiers and memory dumps are excluded.
+- Startup phase and bounded exception observations to diagnose failures before the VR host starts.
+- Corrected OpenXR frame submission between game-image updates and retained menu images during capture stalls.
+- DXVK remains the default; the previous renderer can be restored for compatibility comparisons without mixing renderer files.
+- Visible game INI resolution and VirtualStore conflict warning; no automatic 4K selection or legacy width/height override.
+- Native cheat and startup mission selector options, with game-path-specific preferences and preserved saves.
+- Installer repair after manual folder deletion and safe relocation of a registered previous copy, with preserved user files and verified cleanup after successful installation.
+
+Automated tests cover the corrected paths. Different headsets, drivers and renderers still need real gameplay testing; the pre-menu crash reported on an RTX 5080 is not yet reproduced or confirmed fixed.
 
 A community VR conversion for the original **Hitman: Contracts (2004)**. This Review Version lets you see and experience the game's levels in VR while further VR interactions are developed.
 
