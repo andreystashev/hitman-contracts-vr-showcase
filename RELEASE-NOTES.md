@@ -1,13 +1,24 @@
-# Hitman: Contracts VR 0.1.0.13 - Review Version
+# Hitman: Contracts VR 0.1.0.14 - Review Version
+
+## Update in 0.1.0.14
+
+Close the game and launcher, then run the new installer. Installation resets mod settings to defaults, including controller and connection preferences; recordings and game saves are retained. Select your headset connection again in Settings.
+
+- OpenXR controller hands use grip position with aim orientation; controller input is cleared when the OpenXR session loses focus. Two-handed grips and aiming still need testing across headset and controller combinations.
+- Switching connection profiles clears the previous runtime override, preventing an old Virtual Desktop path from silently taking precedence over SteamVR. The installer also replaces old mod settings with clean defaults. The SteamVR runtime and headset were detected in a local launcher check; gameplay and other headset combinations still need verification. Virtual Desktop / VDXR has reported connection problems and remains unverified.
+- Original / previous renderer is the recommended default. DXVK is available as an alternative and may be slightly faster, but can cause crashes, flickering or visual artifacts. Native OpenGL is not offered in the settings.
+- The installer restores missing mod files and resets mod configuration, while preserving recordings, game files and saves.
+
+Automated build, controller, launcher and installer checks passed. A successful headset detection is not a full gameplay test.
 
 ## Update in 0.1.0.13
 
-This is a fix update to the Review Version. Close the game and old launcher, then run the new installer. Existing settings are preserved. Use **Settings > Support > Create support report** for a local diagnostic ZIP; [usage instructions](https://github.com/andreystashev/hitman-contracts-vr-showcase/blob/main/TROUBLESHOOTING.md#creating-and-sharing-a-support-report) explain the process. Nothing is uploaded automatically.
+This is a fix update to the Review Version. Close the game and old launcher, then run the new installer. Use **Settings > Support > Create support report** for a local diagnostic ZIP; [usage instructions](https://github.com/andreystashev/hitman-contracts-vr-showcase/blob/main/TROUBLESHOOTING.md#creating-and-sharing-a-support-report) explain the process. Nothing is uploaded automatically.
 
 - Local support report button with allowlisted technical fields and no automatic upload. Raw logs, paths, personal/device identifiers and memory dumps are excluded.
 - Startup phase and bounded exception observations to diagnose failures before the VR host starts.
 - Corrected OpenXR frame submission between game-image updates and retained menu images during capture stalls.
-- DXVK remains the default; the previous renderer can be restored for compatibility comparisons without mixing renderer files.
+- Original / previous renderer is the recommended default. DXVK may be slightly faster but can cause errors or artifacts.
 - Visible game INI resolution and VirtualStore conflict warning; no automatic 4K selection or legacy width/height override.
 - Native cheat and startup mission selector options, with game-path-specific preferences and preserved saves.
 - Installer repair after manual folder deletion and safe relocation of a registered previous copy, with preserved user files and verified cleanup after successful installation.
@@ -22,10 +33,10 @@ A community VR conversion for the original **Hitman: Contracts (2004)**. This Re
 - **Quest Link / Air Link (Meta)** output plus an **OpenXR** host for **Virtual Desktop / VDXR**, **SteamVR**, and compatible active OpenXR runtimes.
 - Automatic and explicit connection profiles following the Blood Money VR settings layout, with validated runtime JSON selection where needed.
 - Runtime choice applies only to the launched mod. Windows' global OpenXR runtime, default audio device and microphone are not changed.
-- Automatic headset audio, DXVK rendering, preserved game resolution and VSync disabled on the game presentation path.
+- Automatic headset audio, Original and DXVK rendering choices, preserved game resolution and VSync disabled on the DXVK game presentation path.
 - English settings, control hints and mod menus; transparent action menu and health/ammunition information beside the left hand.
 - The Steam Crosshair rendering fix. **Crosshair is off** and **Controller help is on** by default.
-- A per-user installer with separate launch/settings shortcuts and preservation of settings during updates.
+- A per-user installer with separate launch/settings shortcuts; updates reset mod settings to defaults.
 
 ## Review Version limitations
 

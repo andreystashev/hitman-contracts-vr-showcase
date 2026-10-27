@@ -1,6 +1,6 @@
 # Hitman: Contracts VR — Review Version
 
-**[Download Review Version 0.1.0.13 — Fix update](https://github.com/andreystashev/hitman-contracts-vr-showcase/releases/tag/v0.1.0.13-review)** | [All releases](https://github.com/andreystashev/hitman-contracts-vr-showcase/releases)
+**[Download Review Version 0.1.0.13 — Fix update](https://github.com/andreystashev/hitman-contracts-vr-showcase/releases/tag/v0.1.0.14-review)** | [All releases](https://github.com/andreystashev/hitman-contracts-vr-showcase/releases)
 
 A community VR mod for the original **Hitman: Contracts (2004)** on PC, with native engine stereo rendering, head tracking and tracked controllers.
 
@@ -11,7 +11,7 @@ You need your own copy of the game. This project does not include game files and
 ## What it does
 
 - Renders the game world in stereo using the game's camera and visibility system.
-- Tracks your head and drives the original character's arms and held weapons from the controllers.
+- Tracks your head and drives the original character's arms and held weapons from the controllers. OpenXR controller poses use grip position with aim orientation, and stale input is cleared when the session loses focus.
 - Supports separate firing hands, native weapon reloads and two-handed support grips. Item/body interactions are experimental.
 - Preserves melee attack animations and shows scripted cameras and cutscenes on a virtual screen.
 - Places a transparent action menu and compact health/ammunition information beside the left hand while you hold **X**.
@@ -25,7 +25,7 @@ You need your own copy of the game. This project does not include game files and
 - A connected PC VR headset and its runtime: **Meta Quest Link / Air Link**, **Virtual Desktop / VDXR**, **SteamVR through OpenXR**, or another compatible active OpenXR runtime.
 - Tracked controllers and a GPU/driver compatible with the bundled DXVK renderer and the runtime's D3D11 graphics support. Meta PC software is required only for the Meta profile.
 
-Choose the matching connection profile in settings. Explicit VDXR and SteamVR profiles select their detected runtime for this mod process; they do not change Windows' global OpenXR runtime. The generic OpenXR profile uses the active runtime unless you choose a runtime JSON manifest. See [connection setup](INSTALLATION.md#headset-connection-profiles).
+Choose the matching connection profile in settings. Explicit VDXR and SteamVR profiles select their detected runtime for this mod process; changing profiles clears the previous custom runtime path; they do not change Windows' global OpenXR runtime. The generic OpenXR profile uses the active runtime unless you choose a runtime JSON manifest. See [connection setup](INSTALLATION.md#headset-connection-profiles).
 
 ## Install and play
 
@@ -35,7 +35,7 @@ Choose the matching connection profile in settings. Explicit VDXR and SteamVR pr
 4. Open **Contracts VR Settings**, verify the game path and select **Automatic** or the matching connection profile.
 5. Click **Save & play**, then load a mission using the controllers.
 
-The mod follows the game's resolution. Settings show the value in `HitmanContracts.ini`; support reports include the actual captured size. The launcher does not select 4K or revive an old width/height override. DXVK is the default renderer, with an **Original / previous renderer** compatibility option for comparing startup or flickering problems. VSync is disabled on the DXVK game presentation path. Headset refresh rate and compositor scheduling remain controlled by the VR runtime.
+The mod follows the game's resolution. Settings show the value in `HitmanContracts.ini`; support reports include the actual captured size. The launcher does not select 4K or revive an old width/height override. **Original / previous renderer** is the recommended default for stability. **DXVK** is an alternative that may be slightly faster but can cause crashes, flickering, errors or visual artifacts. VSync is disabled on the DXVK game presentation path. Headset refresh rate and compositor scheduling remain controlled by the VR runtime.
 
 The Modifiers page also offers native **cheats** and **Start with the mission selector**. These options apply on the next mod launch and preserve saves. Disabling the mission selector restores the previous startup scene when it was saved by this setting.
 
