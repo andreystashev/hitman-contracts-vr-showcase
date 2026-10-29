@@ -1,6 +1,6 @@
 # Hitman: Contracts VR — Review Version
 
-**[Download Review Version 0.1.0.13 — Fix update](https://github.com/andreystashev/hitman-contracts-vr-showcase/releases/tag/v0.1.0.14-review)** | [All releases](https://github.com/andreystashev/hitman-contracts-vr-showcase/releases)
+**[Download Review Version 0.1.0.14 — Fix update](https://github.com/andreystashev/hitman-contracts-vr-showcase/releases/tag/v0.1.0.14-review)** | [All releases](https://github.com/andreystashev/hitman-contracts-vr-showcase/releases)
 
 A community VR mod for the original **Hitman: Contracts (2004)** on PC, with native engine stereo rendering, head tracking and tracked controllers.
 
