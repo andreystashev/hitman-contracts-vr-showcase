@@ -1,4 +1,20 @@
-# Hitman: Contracts VR 0.1.0.14 - Review Version
+# Hitman: Contracts VR 0.1.0.15 - Review Version
+
+## Update in 0.1.0.15
+
+Close the game and launcher before updating. The installer resets mod settings
+while preserving recordings and game saves; select your connection profile again.
+
+- Optional **D3D9On12** renderer with GPU-only scene-image sharing to the VR host, a real compatibility probe and safe renderer restoration. D3D9On12 is the default; Original and DXVK remain available.
+- Preserved DISCARD updates for small dynamic vertex buffers in the bundled D3D8 conversion layer, removing a large synchronization bottleneck in smoke-heavy scenes.
+- Direct host uploads for Original/DXVK and coherent complete-eye-pair retention for CPU and GPU transports, reducing transfer overhead and mismatched eye updates.
+- Corrected native fog coverage for the VR body and held-item submeshes, fixing sky transparency while preserving the game's postfilter.
+- Corrected depth handling for the owned sniper overlay, fixing the Enfield Enforcer reticle disappearing behind scene geometry.
+- The original night-vision appearance is retained. Its reported native postfilter artifacts are not fixed in this update.
+
+D3D9On12 is optional and depends on Windows, driver and same-GPU image-sharing
+support. Rendering still alternates eyes; game render rate is not headset display
+rate. Compatibility and performance vary by system and scene.
 
 ## Update in 0.1.0.14
 
@@ -33,7 +49,7 @@ A community VR conversion for the original **Hitman: Contracts (2004)**. This Re
 - **Quest Link / Air Link (Meta)** output plus an **OpenXR** host for **Virtual Desktop / VDXR**, **SteamVR**, and compatible active OpenXR runtimes.
 - Automatic and explicit connection profiles following the Blood Money VR settings layout, with validated runtime JSON selection where needed.
 - Runtime choice applies only to the launched mod. Windows' global OpenXR runtime, default audio device and microphone are not changed.
-- Automatic headset audio, Original and DXVK rendering choices, preserved game resolution and VSync disabled on the DXVK game presentation path.
+- Automatic headset audio, Original, DXVK and optional D3D9On12 rendering choices, preserved game resolution and VSync disabled on the DXVK game presentation path.
 - English settings, control hints and mod menus; transparent action menu and health/ammunition information beside the left hand.
 - The Steam Crosshair rendering fix. **Crosshair is off** and **Controller help is on** by default.
 - A per-user installer with separate launch/settings shortcuts; updates reset mod settings to defaults.

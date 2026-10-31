@@ -1,6 +1,6 @@
 # Hitman: Contracts VR — Review Version
 
-**[Download Review Version 0.1.0.13 — Fix update](https://github.com/andreystashev/hitman-contracts-vr-showcase/releases/tag/v0.1.0.14-review)** | [All releases](https://github.com/andreystashev/hitman-contracts-vr-showcase/releases)
+**[Download Review Version 0.1.0.15 — Performance update](https://github.com/andreystashev/hitman-contracts-vr-showcase/releases/tag/v0.1.0.15-review)** | [All releases](https://github.com/andreystashev/hitman-contracts-vr-showcase/releases)
 
 A community VR mod for the original **Hitman: Contracts (2004)** on PC, with native engine stereo rendering, head tracking and tracked controllers.
 
@@ -23,7 +23,7 @@ You need your own copy of the game. This project does not include game files and
 - Windows 10/11, 64-bit.
 - A supported original PC executable: Steam **1.75**, or the supported legacy **1.74** build. See [installation](INSTALLATION.md) for the exact executable hashes.
 - A connected PC VR headset and its runtime: **Meta Quest Link / Air Link**, **Virtual Desktop / VDXR**, **SteamVR through OpenXR**, or another compatible active OpenXR runtime.
-- Tracked controllers and a GPU/driver compatible with the bundled DXVK renderer and the runtime's D3D11 graphics support. Meta PC software is required only for the Meta profile.
+- Tracked controllers and a GPU/driver with the VR runtime's D3D11 graphics support. DXVK additionally needs a compatible Vulkan driver; D3D9On12 has additional Windows/D3D12 sharing requirements. Meta PC software is required only for the Meta profile.
 
 Choose the matching connection profile in settings. Explicit VDXR and SteamVR profiles select their detected runtime for this mod process; changing profiles clears the previous custom runtime path; they do not change Windows' global OpenXR runtime. The generic OpenXR profile uses the active runtime unless you choose a runtime JSON manifest. See [connection setup](INSTALLATION.md#headset-connection-profiles).
 
@@ -35,7 +35,7 @@ Choose the matching connection profile in settings. Explicit VDXR and SteamVR pr
 4. Open **Contracts VR Settings**, verify the game path and select **Automatic** or the matching connection profile.
 5. Click **Save & play**, then load a mission using the controllers.
 
-The mod follows the game's resolution. Settings show the value in `HitmanContracts.ini`; support reports include the actual captured size. The launcher does not select 4K or revive an old width/height override. **Original / previous renderer** is the recommended default for stability. **DXVK** is an alternative that may be slightly faster but can cause crashes, flickering, errors or visual artifacts. VSync is disabled on the DXVK game presentation path. Headset refresh rate and compositor scheduling remain controlled by the VR runtime.
+The mod follows the game's resolution; the launcher preserves it. **D3D9On12 (DirectX 12)** is selected by default and checks GPU-sharing support before changing game DLLs. Choose **Original (DirectX 8)** for compatibility, or **DXVK (Vulkan)** as an alternative. Renderer settings show approximate gains from an RTX 4060 / 4K example; results vary by scene and system. Game presentation VSync is disabled for DXVK and D3D9On12; headset refresh and reprojection remain controlled by the VR runtime.
 
 The Modifiers page also offers native **cheats** and **Start with the mission selector**. These options apply on the next mod launch and preserve saves. Disabling the mission selector restores the previous startup scene when it was saved by this setting.
 

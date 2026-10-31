@@ -12,6 +12,7 @@ The mod does not grant a license to the game or to any third-party component bey
 | OpenXR SDK 1.1.65 | Bundled Khronos x64 loader and interface headers | [OpenXR Apache-2.0 license](licenses/OpenXR-LICENSE.txt) |
 | JsonCpp | JSON parsing inside the OpenXR loader | [JsonCpp public-domain/MIT license](licenses/JsonCpp-LICENSE.txt) |
 | DXVK 3.1.1 | Bundled x86 D3D8/D3D9 renderer wrappers | [DXVK license](licenses/DXVK-LICENSE.txt) |
+| d3d8to9 | Optional modified x86 D3D8-to-D3D9On12 renderer | [BSD-2-Clause](https://github.com/crosire/d3d8to9/blob/main/LICENSE.md); license and pinned upstream revision accompany the DLL in `renderer-on12-x86` |
 | LLVM / Clang | Compiler-provided code and toolchain notices | [LLVM license](licenses/LLVM-LICENSE.txt) |
 | libc++ | Statically linked C++ standard library | [libc++ license](licenses/libcxx-LICENSE.txt) |
 | libc++abi | Statically linked C++ ABI runtime | [libc++abi license](licenses/libcxxabi-LICENSE.txt) |
@@ -21,6 +22,8 @@ The mod does not grant a license to the game or to any third-party component bey
 | winpthreads | Windows POSIX threading support | [winpthreads notices](licenses/winpthreads-LICENSE.txt) |
 
 The Meta PC runtime itself is loaded from the user's installed Meta software and is not bundled with the mod. The Oculus SDK remains subject to its own terms, including its approved-platform provisions.
+
+Microsoft D3D9On12, D3D12 and D3DX9 runtimes are supplied by the user's Windows/DirectX installation and are not redistributed here. The optional d3d8to9 modifications explicitly select On12 and preserve DISCARD on small dynamic buffers; upstream source and local changes are recorded in its `upstream.json`.
 
 The SteamVR audio query loads OpenVR from the user's SteamVR installation for a background utility query; no OpenVR DLL is bundled. SteamVR remains responsible for its selected headset audio device.
 
