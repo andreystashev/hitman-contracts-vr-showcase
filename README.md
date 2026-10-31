@@ -2,6 +2,8 @@
 
 **[Download Review Version 0.1.0.15 — Performance update](https://github.com/andreystashev/hitman-contracts-vr-showcase/releases/tag/v0.1.0.15-review)** | [All releases](https://github.com/andreystashev/hitman-contracts-vr-showcase/releases)
 
+[Release history, current status and measured performance](RELEASE-NOTES.md) is the maintained record of changes and known limitations.
+
 A community VR mod for the original **Hitman: Contracts (2004)** on PC, with native engine stereo rendering, head tracking and tracked controllers.
 
 This **Review Version** is intended to let you see and experience the game's levels in VR. It is a work in progress, with incomplete and experimental VR interactions. It is not a finished full-immersion conversion: convenient weapon swapping/dropping and immersive object/body handling still need work.

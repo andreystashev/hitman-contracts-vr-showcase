@@ -1,4 +1,36 @@
-# Hitman: Contracts VR 0.1.0.15 - Review Version
+# Hitman: Contracts VR - Release history and current status
+
+
+This is the maintained English record of released changes, validation and known
+limitations. Update this document for each release instead of creating separate
+version-named validation reports. Older sections describe their release at the
+time; the current-status section takes precedence.
+
+## Current published release
+
+**0.1.0.15 Review**, published **31 October 2026**:
+[download and release assets](https://github.com/andreystashev/hitman-contracts-vr-showcase/releases/tag/v0.1.0.15-review).
+It is a published prerelease, not a final stable release.
+
+Installer: `ContractsVR-0.1.0.15-Setup.exe` (6,527,917 bytes).
+SHA256: `60faa823a3b1ff88329e8ee0579da513da34004a664141098cccb8fd88856fbf`.
+The published installer is the user-approved build; documentation maintenance
+does not replace that binary or change its release tag.
+
+| Area | Current status |
+| --- | --- |
+| D3D9On12 | Default for fresh bundled installations; GPU scene-image sharing with compatibility checks and CPU fallback. Existing explicit renderer choices are preserved when loading settings. |
+| Original / DXVK | Available; CPU scene capture with direct host uploads and complete stereo-pair retention. |
+| Foreground fog / Enfield optic | Accepted fixes included. |
+| Night vision | Native postfilter retained at the user's request; silhouettes and geometry artifacts remain unresolved. Rejected shader experiments are excluded. |
+| Stereo | Alternating eyes across game updates; simultaneous two-eye rendering is not implemented. |
+| OpenGL | Incomplete effects backend; hidden in release settings. |
+| Original direct-backbuffer experiment | Disabled by default following reported flashing. |
+| Shared launcher/core refactor | Separate development branches; not part of this performance release. |
+
+The approved performance-release scope is included. The incomplete/rejected work
+listed above must not be presented as shipped fixes. Support for every GPU,
+driver, headset or game-code patch has not been established.
 
 ## Update in 0.1.0.15
 
@@ -58,6 +90,83 @@ A community VR conversion for the original **Hitman: Contracts (2004)**. This Re
 
 Not all VR features are implemented or polished. Weapon swapping/dropping and immersive item/body handling remain experimental. Room-scale walking is not implemented. Use the native inventory and action menus when an interaction is awkward or unavailable.
 
-The installed Meta path and Steam Crosshair fix have been checked in the headset. The new OpenXR backend and connection-selection paths have automated coverage; VDXR and SteamVR headset sessions have not yet been verified for this release. Please include your selected profile, runtime and controller model when reporting results. Support for every headset/controller combination or game-code patch is not implied.
+The user reported Meta and Virtual Desktop tests with the rendering fixes. Recorded sessions cover Meta D3D9On12/DXVK and Virtual Desktop D3D9On12/DXVK/Original; one intended Meta Original run actually selected D3D9On12, so Meta Original coverage is missing. SteamVR headset gameplay and every headset/controller combination remain unverified. Please include your selected profile, runtime and controller model when reporting results.
 
 See the [installation guide](INSTALLATION.md), [controls](CONTROLS.md) and [troubleshooting guide](TROUBLESHOOTING.md). The public project is [Hitman: Contracts VR Showcase](https://github.com/andreystashev/hitman-contracts-vr-showcase).
+
+## Performance evidence for 0.1.0.15
+
+Measurements below use RTX 4060 and the supported Steam executable. They measure
+**game presents**, source eye images or transfer wall time, not headset displayed
+FPS. D3D renders alternating eyes. Different scenes/resolutions are separate tests.
+
+| Controlled change | Before | After | Result |
+| --- | ---: | ---: | --- |
+| D3D9On12 small dynamic-buffer DISCARD fix, Hunter and Hunted smoky room, 1600x1200, same-process ABBA | 84.7-85.0 presents/s | 209.6-211.7 presents/s | About 2.48x / +148% |
+| Buffer-lock wall time in that ABBA test | 7.24-7.33 ms/frame | 0.674-0.676 ms/frame | About 91% less lock wait |
+| Original CPU-to-host direct upload, same smoky room, 1600x1200 | 1.12-1.13 ms/image | 0.617-0.635 ms/image | About 44% lower host transfer time; game rate remained about 60 presents/s |
+
+The first comparison isolates the conversion-layer fix, not the complete
+0.1.0.14-to-0.1.0.15 update. The transfer comparison isolates the old and new host
+upload paths. Neither is a universal release-to-release FPS percentage.
+
+At 3840x2160, an additional diagnostic recorded about 123.6 D3D9On12 presents/s,
+58.4 DXVK and 37.8 Original. Relative to that Original reference, DXVK was about **+55% (1.55x)** and
+D3D9On12 about **+227% (3.27x)**. Settings label these as an approximate
+RTX 4060 / 4K example. Those runs were separate processes with nonidentical
+smoke/orientation and are references, not controlled renderer comparisons.
+The faster Original direct-backbuffer experiment is **off by default** after a
+reported native-driver flash; its 53% diagnostic improvement is not a default
+release claim.
+
+User Meta/Virtual Desktop runs also showed substantially higher source cadence
+on D3D9On12, with approximately zero scene readback time. Those sessions used
+different scenes and durations. One intended Meta Original run actually selected
+D3D9On12; it must not be reported as Meta Original coverage.
+
+No controlled combat or identical complete 0.1.0.14/0.1.0.15 headset comparison
+is available. These figures do not establish a universal upgrade percentage.
+Raw measurement JSON remains in the private development repository's
+`tools-read/results/`; public notes summarize the evidence without publishing
+private captures or machine paths.
+
+## Validation of the published build
+
+- Full build: 91 automated suites; 102 launcher settings checks.
+- Renderer switching: 59 reversible checks in private game copies.
+- Real GPU foreground/optic tests: system D3D8, DXVK and D3D9On12,
+  including reset/resize and depth-state restoration after failed draws.
+- Packaging: 26 runtime hashes, 14 installer staging tests, 12 public staging
+  tests and 214 isolated installer workflow checks.
+- User confirmed the Enfield reticle fix and reported the foreground repair
+  working across tested connections/renderers. This does not imply a fresh
+  final-build headset run for every backend or system.
+- Public download size and SHA256 verified after publication.
+
+## Earlier development, consolidated
+
+The October 2026 comfort/gameplay iterations preceded the numbered releases
+above. They added native controller hands and aiming, separate firing/reload
+paths, support grips, scope entry, native melee animations, camera/root-motion
+smoothing, cinematic-screen handling, map/floor navigation, inventory scrolling,
+cursor ownership, and the wrist action/health/ammunition UI. Tests cover the
+production adapters and supported executable profiles; isolated fixtures and
+synthetic tracking runs are not complete headset acceptance tests.
+
+The early OpenGL replay/capture experiments remain development research. Missing
+effects prevented promoting that backend. The old hand-marker roadmap and
+version-named validation reports are historical, superseded by this document
+and the current player guides. Their originals are recoverable from Git history
+at source release tag `v0.1.0.15-review`; measurement fixtures remain versioned.
+
+## Maintenance policy
+
+- Keep one current-status section and append released changes here; do not add
+  per-experiment README or validation documents.
+- Keep build outputs and private game copies outside tracked source. Old local
+  build outputs may be archived under ignored `.cache-build/archived-builds/`.
+- Keep original release binaries, hashes and tags immutable. Documentation-only
+  maintenance does not require a new runtime version.
+- Merge accepted work into `main`; remove superseded maintenance branches only
+  after checking their changes. Preserve independent experimental work until it
+  has been reviewed.
