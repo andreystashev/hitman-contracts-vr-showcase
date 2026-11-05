@@ -8,14 +8,13 @@ time; the current-status section takes precedence.
 
 ## Current published release
 
-**0.1.0.15 Review**, published **31 October 2026**:
-[download and release assets](https://github.com/andreystashev/hitman-contracts-vr-showcase/releases/tag/v0.1.0.15-review).
+**0.1.0.16 Review**, **5 November 2026**:
+[download and release assets](https://github.com/andreystashev/hitman-contracts-vr-showcase/releases/tag/v0.1.0.16-review).
 It is a published prerelease, not a final stable release.
 
-Installer: `ContractsVR-0.1.0.15-Setup.exe` (6,527,917 bytes).
-SHA256: `60faa823a3b1ff88329e8ee0579da513da34004a664141098cccb8fd88856fbf`.
-The published installer is the user-approved build; documentation maintenance
-does not replace that binary or change its release tag.
+Installer: `ContractsVR-0.1.0.16-Setup.exe`. Its size and SHA256 are recorded in
+`release.json` and the `.sha256` asset beside the installer. Previous release
+binaries and tags remain available unchanged.
 
 | Area | Current status |
 | --- | --- |
@@ -31,6 +30,36 @@ does not replace that binary or change its release tag.
 The approved performance-release scope is included. The incomplete/rejected work
 listed above must not be presented as shipped fixes. Support for every GPU,
 driver, headset or game-code patch has not been established.
+
+## Update in 0.1.0.16
+
+Close the game and launcher before updating. The installer resets mod settings
+while preserving recordings and game saves; select your connection profile again.
+
+This update addresses code defects found while investigating reports from a
+Vive Pro 2 with Index Controllers. The reporter's flicker and intro-completion
+crash have not been reproduced locally. The changes below are targeted fixes;
+they do not establish that those two reports are resolved on that hardware.
+
+- Held-X actions retain the original visible list until the host acknowledges
+  the matching wrist list and selection. Lost tracking, delayed layers and
+  stalled hosts revoke that acknowledgement. An empty OpenXR frame or a scope
+  view cannot falsely acknowledge an excluded wrist panel.
+- Changing the number of actions reuses a reserved wrist swapchain instead of
+  repeatedly creating one while the menu is open.
+- Rejected/incomplete CPU captures no longer invalidate both D3D9On12 GPU eye
+  buffers. Accepted CPU captures invalidate only their own eye, before the CPU
+  publication becomes visible to the host.
+- Native reference lookups validate the scene reference collection, which can
+  disappear before its database wrapper during level teardown. If the original
+  player update unloads/replaces the actor, post-update scope, reload and reticle
+  work is skipped. An old action widget is forgotten when ownership is lost.
+
+Regression coverage exercises actual native adapters with teardown occurring
+inside the original update, CPU publication ordering on x86/x64, and the common
+OpenXR host with a fake runtime plus real D3D11 WARP image uploads/composition.
+Vive Pro 2/Index headset testing and a full intro-mission completion remain
+required before claiming hardware acceptance.
 
 ## Update in 0.1.0.15
 
@@ -130,7 +159,21 @@ Raw measurement JSON remains in the private development repository's
 `tools-read/results/`; public notes summarize the evidence without publishing
 private captures or machine paths.
 
-## Validation of the published build
+## Validation of 0.1.0.16
+
+- Full build: 94 automated suites, including 650 common OpenXR host checks with
+  a fake runtime and real D3D11 WARP uploads/composition/recording.
+- Renderer coverage: Original D3D8, DXVK and D3D9On12; complete CPU/GPU stereo
+  pairs, fallback/recovery, reset/resize and foreground/optic depth checks.
+- Packaging: 26 runtime hashes, 14 installer staging tests, 12 public staging
+  tests, 59 reversible renderer-switch checks and 214 isolated installer workflow
+  checks passed for the candidate runtime used for release preparation.
+- Native adapter fixtures reproduce collection teardown and actor replacement
+  inside the original player update. They are not a full intro playthrough.
+- Vive Pro 2/Index hardware acceptance and the reported intro crash remain
+  unverified. No new headset performance percentage is claimed.
+
+## Validation of 0.1.0.15
 
 - Full build: 91 automated suites; 102 launcher settings checks.
 - Renderer switching: 59 reversible checks in private game copies.

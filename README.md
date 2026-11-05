@@ -1,6 +1,6 @@
 # Hitman: Contracts VR — Review Version
 
-**[Download Review Version 0.1.0.15 — Performance update](https://github.com/andreystashev/hitman-contracts-vr-showcase/releases/tag/v0.1.0.15-review)** | [All releases](https://github.com/andreystashev/hitman-contracts-vr-showcase/releases)
+**[Download Review Version 0.1.0.16 — Actions and stability update](https://github.com/andreystashev/hitman-contracts-vr-showcase/releases/tag/v0.1.0.16-review)** | [All releases](https://github.com/andreystashev/hitman-contracts-vr-showcase/releases)
 
 [Release history, current status and measured performance](RELEASE-NOTES.md) is the maintained record of changes and known limitations.
 
@@ -16,7 +16,7 @@ You need your own copy of the game. This project does not include game files and
 - Tracks your head and drives the original character's arms and held weapons from the controllers. OpenXR controller poses use grip position with aim orientation, and stale input is cleared when the session loses focus.
 - Supports separate firing hands, native weapon reloads and two-handed support grips. Item/body interactions are experimental.
 - Preserves melee attack animations and shows scripted cameras and cutscenes on a virtual screen.
-- Places a transparent action menu and compact health/ammunition information beside the left hand while you hold **X**.
+- Places a transparent action menu and compact health/ammunition information beside the left hand while you hold **X**. The original list remains visible until its wrist replacement is submitted, and returns if that replacement becomes unavailable.
 - Provides controller navigation for the game's menus, inventory, map and briefing.
 - Routes game audio to the active headset without changing the Windows default audio device.
 

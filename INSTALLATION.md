@@ -37,7 +37,7 @@ The launcher installs the bundled DXVK wrapper reversibly into the selected game
 
 The selection applies only to the mod and its child host through `XR_RUNTIME_JSON`. The launcher does not rewrite Windows' global OpenXR selection or start another backend when an explicit connection profile fails. Close the game before changing profiles; a working session is not moved to another runtime mid-game.
 
-This release adds the OpenXR paths with automated coverage. VDXR and SteamVR headset sessions have not yet been verified for this release; report the selected profile, runtime and controller model when testing them.
+The OpenXR paths have automated coverage. VDXR and SteamVR headset sessions have not yet been verified for this release; report the selected profile, runtime and controller model when testing them.
 
 ## Resolution, rendering and sound
 

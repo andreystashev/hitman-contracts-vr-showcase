@@ -2,6 +2,10 @@
 
 The names below use the Meta Touch layout. OpenXR controller profiles map their corresponding buttons to the same actions; controllers with different layouts may need their runtime's binding editor. These are the Review Version defaults. Weapon transfers, dropping, and item/body grabbing remain experimental and may require the game's native inventory/action flow in some situations.
 
+With the default Index Controller bindings, **X** means **left A**, **Y** means
+**left B**, and the guide's **A/B** mean **right A/B**. Custom SteamVR bindings
+can change these mappings; this does not imply hardware acceptance on every headset.
+
 ## During gameplay
 
 | Input | Action |
@@ -37,6 +41,9 @@ Crosshair markers are optional and are separate from the sniper scope. The relea
 ## Actions, map and briefing
 
 Hold **X** to open the action list at your left hand. The health and per-hand magazine/reserve counts appear beside it. **Map** and **Briefing** are at the bottom of the list, after **Cancel**, so they do not replace ordinary nearby interactions.
+
+While the wrist panel is pending or unavailable, the original on-screen action
+list remains visible. Selection and release-to-commit continue to use the native list.
 
 | Map input | Action |
 | --- | --- |
